@@ -45,26 +45,26 @@ void print(int cross[], int cap) {
 }
 
 int main() {
-  int q[8] = {0};
-  int c = 0;
-  q[0] = 1;
+  int cross[8] = {0};
+  int box = 0;
+  cross[0] = 1;
   
   int solutions = 0;
-  while (c > -1)
+  while (box > -1)
   {
-    if (c == 8)
+    if (box == 8)
     {
       solutions++;
-      print(q, c);
-      backtrack(q, c);
+      print(cross, box);
+      backtrack(cross, box);
     }
-    else if (q[c] == 9) backtrack(q, c);
-    else if (test(q, c) == true)
+    else if (cross[box] == 9) backtrack(cross, box);
+    else if (test(cross, box) == true)
     {
-      c++;
-      if (c < 9) q[c] = 1;
+      box++;
+      if (box < 9) cross[box] = 1;
     }
-    else q[c]++;
+    else cross[box]++;
   }
   
 }
