@@ -8,28 +8,63 @@ You may only input 1 number between one and eight. Each number can only appear o
 */
 bool test(int cross[], int x) {
 	static int checkList[8][5] = {
-		{-1},
-		{0,-1},
-		{1,-1},
-		{0,1,2,-1},
-		{1,2,3,-1},
-		{2,4,-1},
-		{0,3,4,-1},
-		{3,4,5,6,-1},
+		{-1},//box 0
+		{0,-1},//box 1
+		{1,-1},//box 2
+		{0,1,2,-1},//box 3
+		{1,2,3,-1},//box 4
+		{2,4,-1},//box 5
+		{0,3,4,-1},//box 6
+		{3,4,5,6,-1},//box 7
 	};
-	//fill in 
-} 
+	for(int i = 0; i < x; i++){
+    if(cross[i] == cross[x])
+      return false;
+  }
+  for (int i=0 ;  checkList[x][i]!=-1 ; i++){
+      if (abs (cross[x]- cross[(checkList[x][i])]) == 1) 
+        return false;
+  }
+  return true;
+}
+void backtrack(int a[], int& c){
+  c--;
+  if (c < 0) return;
+  a[c]++;
+  if (a[c] == 9) backtrack(a, c);
+}
 
 void print(int cross[], int cap) {
 	static int count = 0;
-	cout << " Soultion number: " << ++count << endl;
+	cout << "Solution number: " << ++count << endl;
 	cout << " " << cross[1] << cross[2] << endl;
 	cout << cross[0] << cross[3] << cross[4] << cross[5] << endl;
 	cout << " " << cross[6] << cross[7] << endl;
+  cout << endl;
 	return;
 }
 
 int main() {
-  //use the same 1d 8 queens main function
+  int q[8] = {0};
+  int c = 0;
+  q[0] = 1;
+  
+  int solutions = 0;
+  while (c > -1)
+  {
+    if (c == 8)
+    {
+      solutions++;
+      print(q, c);
+      backtrack(q, c);
+    }
+    else if (q[c] == 9) backtrack(q, c);
+    else if (test(q, c) == true)
+    {
+      c++;
+      if (c < 9) q[c] = 1;
+    }
+    else q[c]++;
+  }
   
 }
