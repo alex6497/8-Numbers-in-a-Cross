@@ -27,11 +27,11 @@ bool test(int cross[], int x) {
   }
   return true;
 }
-void backtrack(int a[], int& c){
-  c--;
-  if (c < 0) return;
-  a[c]++;
-  if (a[c] == 9) backtrack(a, c);
+void backtrack(int cross[], int& box){
+  box--;
+  if (box < 0) return;
+  cross[box]++;
+  if (cross[box] == 9) backtrack(cross, box);
 }
 
 void print(int cross[], int cap) {
