@@ -6,7 +6,7 @@ using namespace std;
 
 You may only input 1 number between one and eight. Each number can only appear once and its box cannot be next to its next or previous number's box vertically, horizontally, or diagonally.
 */
-bool test(int cross[], int x) {
+bool test(int cross[], int box) {
 	static int checkList[8][5] = {
 		{-1},//box 0
 		{0,-1},//box 1
@@ -17,12 +17,12 @@ bool test(int cross[], int x) {
 		{0,3,4,-1},//box 6
 		{3,4,5,6,-1},//box 7
 	};
-	for(int i = 0; i < x; i++){
-    if(cross[i] == cross[x])
+	for(int i = 0; i < box; i++){
+    if(cross[i] == cross[box])
       return false;
   }
-  for (int i=0 ;  checkList[x][i]!=-1 ; i++){
-      if (abs (cross[x]- cross[(checkList[x][i])]) == 1) 
+  for (int i=0 ;  checkList[box][i]!=-1 ; i++){
+      if (abs (cross[box]- cross[(checkList[box][i])]) == 1) 
         return false;
   }
   return true;
